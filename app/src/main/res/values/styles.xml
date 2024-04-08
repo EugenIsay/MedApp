@@ -6,6 +6,7 @@
         <item name="backgroundTint"> @color/RegColor </item>
         <item name="android:layout_marginVertical"> 10dp </item>
         <item name="android:textColorHint"> @color/RegColor </item>
+        <item name="android:textColor"> @color/RegColor </item>
     </style>
     <style name="Button_Reg">
         <item name="android:layout_width"> wrap_content </item>

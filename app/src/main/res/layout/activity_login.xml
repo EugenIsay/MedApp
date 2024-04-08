@@ -53,6 +53,7 @@
 
             <EditText style="@style/Reg_EditText"
                 android:hint="Email"
+                android:maxLines="1"
                 />
 
             <EditText style="@style/Reg_EditText"
