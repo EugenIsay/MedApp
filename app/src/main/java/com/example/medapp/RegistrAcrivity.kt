@@ -8,4 +8,6 @@ class RegistrAcrivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
     }
+    val Name: String = "";
+
 }

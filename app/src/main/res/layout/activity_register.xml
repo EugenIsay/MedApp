@@ -54,6 +54,7 @@
 
             <EditText style="@style/Reg_EditText"
                 android:hint="Имя"
+                android:text=""
                 />
             <EditText style="@style/Reg_EditText"
                 android:hint="Email"
