@@ -14,8 +14,4 @@ class OnboardingActivity : AppCompatActivity() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
-    fun ButtonReg(view: View) {
-        val intent = Intent(this, RegistrAcrivity::class.java)
-        startActivity(intent)
-    }
 }

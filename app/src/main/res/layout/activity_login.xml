@@ -52,6 +52,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <EditText style="@style/Reg_EditText"
+                android:id="@+id/LoginName"
                 android:hint="Email"
                 android:maxLines="1"
                 />
@@ -64,6 +65,7 @@
                 android:text="Sing In" />
 
             <Button
+                android:id="@+id/ToReg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -77,7 +79,7 @@
 
             <Button
                 style="@style/Button_Reg"
-                android:text="Профиль" />
+                android:text="@string/profile" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
