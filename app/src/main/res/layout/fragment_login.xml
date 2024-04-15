@@ -61,6 +61,7 @@
                 android:hint="Пароль"/>
 
             <Button
+                android:id="@+id/Sign_in"
                 style="@style/Button_Reg"
                 android:text="Sing In" />
 

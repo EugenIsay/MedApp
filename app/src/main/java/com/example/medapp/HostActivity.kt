@@ -17,7 +17,7 @@ class HostActivity : AppCompatActivity() {
         val view = hostActivityHostBinding?.root
         setContentView(view)
         supportFragmentManager.commit {
-            add<TestFragment>(R.id.host_container)
+            add<SplashFragment>(R.id.host_container)
         }
     }
 }

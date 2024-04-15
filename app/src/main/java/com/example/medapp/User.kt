@@ -18,4 +18,6 @@ data class User(val startname: String, val startemail: String, val startpassword
     var Password: String
         get() = _password
         set(value) {_password = value}
+
+
 }

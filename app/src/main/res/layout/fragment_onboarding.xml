@@ -73,12 +73,13 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <Button
+            android:id="@+id/sign_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_button_rectangle"
             android:fontFamily="@font/alegreya"
-            android:text="Войти в аккаунт"
             android:onClick="ButtonLogin"
+            android:text="Войти в аккаунт"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="25dp" />
@@ -96,7 +97,7 @@
                 android:textSize="20dp" />
 
             <Button
-
+                android:id="@+id/Sign_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"

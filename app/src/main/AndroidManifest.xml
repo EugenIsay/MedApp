@@ -22,13 +22,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".MainFragment"
             android:exported="true">
 
         </activity>
-        <activity android:name=".OnboardingActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".RegistrAcrivity"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
