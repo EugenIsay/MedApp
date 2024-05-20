@@ -1,4 +1,4 @@
-package com.example.medapp
+package com.example.medapp.ui
 
 import android.os.Bundle
 import android.view.View
@@ -6,6 +6,7 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import com.example.medapp.R
 import com.example.medapp.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment(R.layout.fragment_login) {

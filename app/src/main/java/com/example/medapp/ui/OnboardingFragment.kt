@@ -1,4 +1,4 @@
-package com.example.medapp
+package com.example.medapp.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import com.example.medapp.R
 import com.example.medapp.databinding.FragmentOnboardingBinding
 import com.example.medapp.databinding.FragmentRegisterBinding
 

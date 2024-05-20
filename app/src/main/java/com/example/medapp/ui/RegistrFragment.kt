@@ -1,8 +1,9 @@
-package com.example.medapp
+package com.example.medapp.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.example.medapp.R
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.example.medapp.databinding.FragmentRegisterBinding

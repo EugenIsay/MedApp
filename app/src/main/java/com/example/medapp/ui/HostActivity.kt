@@ -1,12 +1,13 @@
-package com.example.medapp
+package com.example.medapp.ui
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
+import com.example.medapp.R
 import com.example.medapp.databinding.ActivityHostBinding
 
 class HostActivity : AppCompatActivity() {

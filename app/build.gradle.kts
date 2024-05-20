@@ -52,6 +52,7 @@ dependencies {
     implementation("androidx.contentpager:contentpager:1.0.0")
     implementation("com.google.android.gms:play-services-basement:18.3.0")
     implementation("com.google.android.gms:play-services-tflite-acceleration-service:16.0.0-beta01")
+    implementation("com.android.tools.compose:compose-preview-renderer:0.0.1-alpha01")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
