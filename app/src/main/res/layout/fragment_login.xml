@@ -52,13 +52,14 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <EditText style="@style/Reg_EditText"
-                android:id="@+id/LoginName"
+                android:id="@+id/LoginEmail"
                 android:hint="Email"
                 android:maxLines="1"
                 />
 
             <EditText style="@style/Reg_EditText"
-                android:hint="Пароль"/>
+                android:hint="Пароль"
+                android:id="@+id/LoginPassword"/>
 
             <Button
                 android:id="@+id/Sign_in"

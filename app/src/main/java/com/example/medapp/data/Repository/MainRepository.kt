@@ -12,13 +12,13 @@ import kotlinx.coroutines.flow.flow
 class MainRepository(private val meditationApiServiceImpl: MeditationApiServiceImpl) {
     fun login(login: UserLogin): Flow<MeditationResponseState<User>> =
         flow {
-            return@flow try {
-                val user = meditationApiServiceImpl.login(login)
-                emit(MeditationResponseState.Success(data = user))
-            }
-            catch (e:Exception){
-                emit(MeditationResponseState.Error(exception = e))
-            }
+//            return@flow try {
+//                val user = meditationApiServiceImpl.login(login)
+//                emit(MeditationResponseState.Success(data = user))
+//            }
+//            catch (e:Exception){
+//                emit(MeditationResponseState.Error(exception = e))
+//            }
 
         }
     fun getFeelings(): Flow<MeditationResponseState<FeelingResponse>> =
