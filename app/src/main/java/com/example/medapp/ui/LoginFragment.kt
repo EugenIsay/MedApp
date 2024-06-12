@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.lifecycle.lifecycleScope
 import com.example.medapp.R
 import com.example.medapp.data.Network.MeditationApi
@@ -28,6 +30,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     val TryLogin = serviceImpl.login(user)
                     if (TryLogin.isSuccessful)
                     {
+                        parentFragmentManager.commit {
+                            replace<MainFragment>(R.id.host_container)
+                        }
                     }
                 }
         }
