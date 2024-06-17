@@ -31,7 +31,7 @@ class CustomRecyclerAdapter(private val Feelings: List<Feeling>) :
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return Feelings.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
