@@ -3,11 +3,13 @@ package com.example.medapp.ui
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.lifecycle.lifecycleScope
 import com.example.medapp.R
+import com.example.medapp.data.DataStore
 import com.example.medapp.data.Network.MeditationApi
 import com.example.medapp.data.Network.MeditationApiServiceImpl
 import com.example.medapp.data.UserLogin
@@ -23,6 +25,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val password: EditText = view.findViewById(R.id.LoginPassword)
         val email: EditText = view.findViewById(R.id.LoginEmail)
         val  service = MeditationApi.retrofitService
+        val dataStore = DataStore(requireContext())
         val serviceImpl = MeditationApiServiceImpl(service)
         fragmentLoginBinding?.SignIn?.setOnClickListener {
                 lifecycleScope.launch(Dispatchers.Main) {
@@ -30,6 +33,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     val TryLogin = serviceImpl.login(user)
                     if (TryLogin.isSuccessful)
                     {
+                        var sample = TryLogin.body()
+                        if (sample != null) {
+                            Toast.makeText(requireContext(), sample.avatar, Toast.LENGTH_SHORT).show()
+                            dataStore.setUser(sample)
+                        };
                         parentFragmentManager.commit {
                             replace<MainFragment>(R.id.host_container)
                         }
