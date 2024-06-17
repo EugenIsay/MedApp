@@ -10,8 +10,8 @@ import androidx.fragment.app.replace
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medapp.R
+import com.example.medapp.data.CustomRecyclerAdapter
 import com.example.medapp.data.DataStore
-import com.example.medapp.data.ImageViewAdapter
 import com.example.medapp.data.Network.MeditationApi
 import com.example.medapp.data.Network.MeditationApiServiceImpl
 import com.example.medapp.data.Repository.MainRepository
@@ -39,14 +39,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val serviceImpl = MeditationApiServiceImpl(service)
         val repository: MainRepository = MainRepository(serviceImpl)
 
-        val arrayAdapter = ImageViewAdapter()
+
         val RecView = view.findViewById<RecyclerView>(R.id.MainRecyclerView)
-        RecView.adapter = arrayAdapter
-                lifecycleScope.launch {
-                    repository.getFeelings().collectLatest{
-                        //arrayAdapter.submitList(it)
-                    }
-                }
+        lifecycleScope.launch {
+            RecView.adapter = CustomRecyclerAdapter(serviceImpl.getFeeling().data);
+        }
+
+
 
         fragmentMainBinding?.MainNav?.setOnItemReselectedListener()
         {
