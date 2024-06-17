@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Button xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:layout_height="wrap_content" android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/feelingItem"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/feelButton"
+        style="@style/MainButtonIcon">
 
-    style="@style/MainButtonIcon">
+    </ImageView>
+    <TextView android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/feelText"
+        />
 
-</Button>
+</LinearLayout>

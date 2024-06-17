@@ -25,8 +25,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val password: EditText = view.findViewById(R.id.LoginPassword)
         val email: EditText = view.findViewById(R.id.LoginEmail)
         val  service = MeditationApi.retrofitService
-        val dataStore = DataStore(requireContext())
         val serviceImpl = MeditationApiServiceImpl(service)
+        val dataStore = DataStore(requireContext())
         fragmentLoginBinding?.SignIn?.setOnClickListener {
                 lifecycleScope.launch(Dispatchers.Main) {
                     val user = UserLogin(email.text.toString(), password.text.toString())
