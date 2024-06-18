@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medapp.R
+import com.squareup.picasso.Picasso
 
 class QuoteRecyclerAdapter(private val Quote: List<Quote>) :
     RecyclerView.Adapter<QuoteRecyclerAdapter.ViewHolder>() {
@@ -19,7 +20,7 @@ class QuoteRecyclerAdapter(private val Quote: List<Quote>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.feeling_item, parent, false)
+                .inflate(R.layout.quote_item, parent, false)
         return ViewHolder(itemView)
     }
 
@@ -28,8 +29,8 @@ class QuoteRecyclerAdapter(private val Quote: List<Quote>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Picasso.get().load(Quote[position].image.toString()).into(holder.img)
-        holder.textTitle.text = Quote[position].title.toString()
-        holder.textDesc.text = Quote[position].description.toString()
+        Picasso.get().load(Quote[position].image).into(holder.img)
+        holder.textTitle.text = Quote[position].title
+        holder.textDesc.text = Quote[position].description
     }
 }

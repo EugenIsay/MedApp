@@ -15,7 +15,6 @@ import com.example.medapp.data.DataStore
 import com.example.medapp.data.Network.MeditationApi
 import com.example.medapp.data.Network.MeditationApiServiceImpl
 import com.example.medapp.data.QuoteRecyclerAdapter
-import com.example.medapp.data.Repository.MainRepository
 import com.example.medapp.databinding.FragmentMainBinding
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.collectLatest
@@ -29,7 +28,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         val ava = view.findViewById<ImageView>(R.id.main_avatar)
         val dataStore  = DataStore(requireContext())
-        Toast.makeText(requireContext(), dataStore.avatarFlow.toString(), Toast.LENGTH_SHORT).show()
         lifecycleScope.launch {
             dataStore.avatarFlow.collectLatest {
                 Picasso.get().load(it).into(ava)

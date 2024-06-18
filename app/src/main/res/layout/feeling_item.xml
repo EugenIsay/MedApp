@@ -5,16 +5,19 @@
     android:layout_marginStart="15dp"
     android:id="@+id/feelingItem"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:scaleType="centerCrop" xmlns:android="http://schemas.android.com/apk/res/android"
+    <ImageButton
+        android:padding="15dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_calm_icon"
+        android:background="@drawable/ic_rect"
         android:id="@+id/feelButton"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_width="65dp"
         android:layout_gravity="center"
-        style="@style/MainButtonIcon">
-
-    </ImageView>
+        />
     <TextView android:textColor="@color/white" android:layout_gravity="center"
         android:layout_width="wrap_content"
+        android:textSize="12dp"
         android:layout_height="wrap_content"
         android:id="@+id/feelText"
         />

@@ -35,7 +35,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     {
                         var sample = TryLogin.body()
                         if (sample != null) {
-                            Toast.makeText(requireContext(), sample.avatar, Toast.LENGTH_SHORT).show()
                             dataStore.setUser(sample)
                         };
                         parentFragmentManager.commit {
