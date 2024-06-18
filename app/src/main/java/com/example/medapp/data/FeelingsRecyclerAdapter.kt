@@ -8,16 +8,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
 import com.squareup.picasso.Picasso
 
 
-class CustomRecyclerAdapter(private val Feelings: List<Feeling>) :
-    RecyclerView.Adapter<CustomRecyclerAdapter.ViewHolder>() {
+class FeelingsRecyclerAdapter(private val Feelings: List<Feeling>) :
+    RecyclerView.Adapter<FeelingsRecyclerAdapter.ViewHolder>() {
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val linearLayout : LinearLayout = itemView.findViewById(R.id.feelingItem)
         val button : ImageView = itemView.findViewById(R.id.feelButton)
         val textView : TextView = itemView.findViewById(R.id.feelText)
     }

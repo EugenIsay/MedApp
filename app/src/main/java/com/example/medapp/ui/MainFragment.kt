@@ -10,10 +10,11 @@ import androidx.fragment.app.replace
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medapp.R
-import com.example.medapp.data.CustomRecyclerAdapter
+import com.example.medapp.data.FeelingsRecyclerAdapter
 import com.example.medapp.data.DataStore
 import com.example.medapp.data.Network.MeditationApi
 import com.example.medapp.data.Network.MeditationApiServiceImpl
+import com.example.medapp.data.QuoteRecyclerAdapter
 import com.example.medapp.data.Repository.MainRepository
 import com.example.medapp.databinding.FragmentMainBinding
 import com.squareup.picasso.Picasso
@@ -37,15 +38,17 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         val  service = MeditationApi.retrofitService
         val serviceImpl = MeditationApiServiceImpl(service)
-        val repository: MainRepository = MainRepository(serviceImpl)
 
 
         val RecView = view.findViewById<RecyclerView>(R.id.MainRecyclerView)
         lifecycleScope.launch {
-            RecView.adapter = CustomRecyclerAdapter(serviceImpl.getFeeling().data);
+            RecView.adapter = FeelingsRecyclerAdapter(serviceImpl.getFeeling().data);
         }
 
-
+        val RecView2 = view.findViewById<RecyclerView>(R.id.QuoteRec)
+        lifecycleScope.launch {
+            RecView2.adapter = QuoteRecyclerAdapter(serviceImpl.getQuote().data);
+        }
 
         fragmentMainBinding?.MainNav?.setOnItemReselectedListener()
         {
