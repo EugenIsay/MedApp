@@ -33,6 +33,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 NameText.text = it;
             }
         }
+        lifecycleScope.launch {
+            dataStore.nameFlow.collectLatest {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                NameText.text = it;
+            }
+        }
 
 
         fragmentProfileBinding?.profExit?.setOnClickListener()

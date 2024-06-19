@@ -62,6 +62,7 @@
         android:layout_marginVertical="20dp"
         android:textSize="35dp"
         android:textColor="@color/white"
+        android:fontFamily="@font/alegreya"
         android:id="@+id/textProf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
