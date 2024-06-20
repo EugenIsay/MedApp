@@ -45,7 +45,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         val RecView2 = view.findViewById<RecyclerView>(R.id.QuoteRec)
         lifecycleScope.launch {
-            RecView2.adapter = QuoteRecyclerAdapter(serviceImpl.getQuote().data);
+            RecView2.adapter = QuoteRecyclerAdapter(serviceImpl.getQuote().data.toMutableList());
         }
 
         fragmentMainBinding?.MainNav?.setOnItemReselectedListener()

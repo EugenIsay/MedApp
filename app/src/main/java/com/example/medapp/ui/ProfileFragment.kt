@@ -5,14 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.lifecycle.lifecycleScope
 import com.example.medapp.R
+import com.squareup.picasso.Picasso
 import com.example.medapp.data.DataStore
 import com.example.medapp.databinding.FragmentProfileBinding
-import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -29,13 +28,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 Picasso.get().load(it).into(ava)
             }
             dataStore.nameFlow.collectLatest {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                 NameText.text = it;
             }
         }
         lifecycleScope.launch {
             dataStore.nameFlow.collectLatest {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                 NameText.text = it;
             }
         }
