@@ -1,4 +1,4 @@
-package com.example.medapp.data
+package com.example.medapp.images
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import com.example.medapp.R
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
+import com.example.medapp.data.Feeling
 import com.squareup.picasso.Picasso
 
 
