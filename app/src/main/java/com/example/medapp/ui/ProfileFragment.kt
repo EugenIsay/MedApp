@@ -1,5 +1,7 @@
 package com.example.medapp.ui
 
+
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -8,12 +10,21 @@ import android.widget.TextView
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import com.example.medapp.R
 import com.squareup.picasso.Picasso
 import com.example.medapp.data.DataStore
-import com.example.medapp.databinding.FragmentProfileBinding
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import com.example.medapp.databinding.FragmentProfileBinding
+import android.content.Context
+import com.example.medapp.images.ImageViewAdapter
+import com.example.medapp.images.MainViewModel
+import com.example.medapp.images.Repository
+import com.example.medapp.images.getBitmap
+import kotlinx.coroutines.flow.collectLatest
+
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     var fragmentProfileBinding: FragmentProfileBinding? = null
@@ -45,6 +56,28 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
         }
 
+//        val repository: Repository = Repository(baseContext)
+//        val viewModel: MainViewModel = MainViewModel(repository)
+//        val recyclerView = view.findViewById<RecyclerView>(R.id.RecProf)
+//
+//        val arrayAdapter = ImageViewAdapter()
+//        viewModel.getImages()
+//        recyclerView.adapter = arrayAdapter
+//        lifecycleScope.launch {
+//            viewModel.uris.collect{
+//                arrayAdapter.submitList(it)
+//            }
+//        }
+//        val photoPicker = registerForActivityResult(ActivityResultContracts.PickVisualMedia()){
+//            val bitmap = getBitmap(contentResolver, it!!)
+//            if (bitmap != null) {
+//                viewModel.addImage(bitmap)
+//            }
+//        }
+//
+//        button.setOnClickListener {
+//            photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+//        }
 
         fragmentProfileBinding?.ProfNavig?.setOnItemReselectedListener()
         {
