@@ -17,6 +17,9 @@ import com.example.medapp.data.DataStore
 import kotlinx.coroutines.launch
 import com.example.medapp.databinding.FragmentProfileBinding
 import android.content.Context
+import android.graphics.Color
+import android.widget.Button
+import android.widget.LinearLayout
 import com.example.medapp.images.ImageViewAdapter
 import com.example.medapp.images.MainViewModel
 import com.example.medapp.images.Repository
@@ -56,25 +59,31 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
         }
 
-//        val repository: Repository = Repository(baseContext)
-//        val viewModel: MainViewModel = MainViewModel(repository)
-//        val recyclerView = view.findViewById<RecyclerView>(R.id.RecProf)
-//
-//        val arrayAdapter = ImageViewAdapter()
-//        viewModel.getImages()
-//        recyclerView.adapter = arrayAdapter
-//        lifecycleScope.launch {
-//            viewModel.uris.collect{
-//                arrayAdapter.submitList(it)
-//            }
-//        }
-//        val photoPicker = registerForActivityResult(ActivityResultContracts.PickVisualMedia()){
-//            val bitmap = getBitmap(contentResolver, it!!)
-//            if (bitmap != null) {
-//                viewModel.addImage(bitmap)
-//            }
-//        }
-//
+        val repository: Repository = Repository(requireContext())
+        val viewModel: MainViewModel = MainViewModel(repository)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.RecProf)
+
+        val arrayAdapter = ImageViewAdapter()
+        viewModel.getImages()
+        recyclerView.adapter = arrayAdapter
+        lifecycleScope.launch {
+            viewModel.uris.collect{
+                arrayAdapter.submitList(it)
+            }
+        }
+        val photoPicker = registerForActivityResult(ActivityResultContracts.PickVisualMedia()){
+            val bitmap = getBitmap(requireContext().contentResolver, it!!)
+            if (bitmap != null) {
+                viewModel.addImage(bitmap)
+            }
+        }
+//        var button = Button(requireContext());
+//        button.layoutParams = LinearLayout.LayoutParams(
+//            LinearLayout.LayoutParams(153, 115)
+//        )
+//        button.text = "Dynamic Button"
+//        button.setBackgroundColor(Color.GREEN)
+//        recyclerView.addView(button)
 //        button.setOnClickListener {
 //            photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
 //        }

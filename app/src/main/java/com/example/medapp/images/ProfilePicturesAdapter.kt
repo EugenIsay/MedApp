@@ -33,4 +33,20 @@ class ProfilePicturesAdapter(private val Quote: MutableList<Quote>) :
         holder.textTitle.text = Quote[position].title
         holder.textDesc.text = Quote[position].description
     }
+
+//    override fun  onBindViewHolder(ItemHolder: ViewHolder,  position: final int  ) {
+//        final ItemDataModel model = arrayList.get(position);
+//        if(model.clicked){
+//            //Set the state of the button when is clicked
+//        }else{
+//            //Set initial state
+//        }
+//        new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                model.clicked = true;
+//
+//            });
+//        }
+//    }
 }
