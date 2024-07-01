@@ -1,52 +1,79 @@
 package com.example.medapp.images
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medapp.R
 import com.example.medapp.data.Quote
 import com.squareup.picasso.Picasso
 
-class ProfilePicturesAdapter(private val Quote: MutableList<Quote>) :
-    RecyclerView.Adapter<ProfilePicturesAdapter.ViewHolder>() {
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val img : ImageView = itemView.findViewById(R.id.quotePicture)
-        val textDesc : TextView = itemView.findViewById(R.id.quoteDesc)
-        val textTitle : TextView = itemView.findViewById(R.id.quoteTitle)
+
+
+class ProfilePicturesAdapter(
+    private val click : (Uri) -> Unit,
+    private val addClick : () -> Unit
+) : ListAdapter<Uri, RecyclerView.ViewHolder>(ImageViewCallback) {
+
+    companion object {
+        private const val TYPE_IMAGE = 0
+        private const val TYPE_ADD_BUTTON = 1
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.quote_item, parent, false)
-        return ViewHolder(itemView)
+
+    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+        val imageView: ImageView = view.findViewById(R.id.image_elem)
+    }
+
+    class AddViewHolder(view: View): RecyclerView.ViewHolder(view) {
+        val addButton: ImageView = view.findViewById(R.id.add_button)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == TYPE_IMAGE) {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.profile_item, parent, false)
+            ViewHolder(view)
+        } else {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.profile_add, parent, false)
+            AddViewHolder(view)
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (position < currentList.size) TYPE_IMAGE else TYPE_ADD_BUTTON
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (getItemViewType(position) == TYPE_IMAGE) {
+            (holder as ViewHolder).imageView.setImageURI(getItem(position))
+            holder.imageView.setOnClickListener {
+                click(getItem(position))
+            }
+        } else {
+            (holder as AddViewHolder).addButton.setOnClickListener {
+                addClick()
+            }
+        }
     }
 
     override fun getItemCount(): Int {
-        return Quote.size
+        return currentList.size + 1
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Picasso.get().load(Quote[position].image).into(holder.img)
-        holder.textTitle.text = Quote[position].title
-        holder.textDesc.text = Quote[position].description
+    object ImageViewCallback: DiffUtil.ItemCallback<Uri>() {
+        override fun areItemsTheSame(oldItem: Uri, newItem: Uri): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: Uri, newItem: Uri): Boolean {
+            return oldItem == newItem
+        }
+
     }
 
-//    override fun  onBindViewHolder(ItemHolder: ViewHolder,  position: final int  ) {
-//        final ItemDataModel model = arrayList.get(position);
-//        if(model.clicked){
-//            //Set the state of the button when is clicked
-//        }else{
-//            //Set initial state
-//        }
-//        new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                model.clicked = true;
-//
-//            });
-//        }
-//    }
 }

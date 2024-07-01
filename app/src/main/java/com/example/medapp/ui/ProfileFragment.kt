@@ -1,36 +1,36 @@
 package com.example.medapp.ui
 
 
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.RecyclerView
 import com.example.medapp.R
-import com.squareup.picasso.Picasso
 import com.example.medapp.data.DataStore
-import kotlinx.coroutines.launch
 import com.example.medapp.databinding.FragmentProfileBinding
-import android.content.Context
-import android.graphics.Color
-import android.widget.Button
-import android.widget.LinearLayout
-import com.example.medapp.images.ImageViewAdapter
 import com.example.medapp.images.MainViewModel
+import com.example.medapp.images.ProfilePicturesAdapter
 import com.example.medapp.images.Repository
 import com.example.medapp.images.getBitmap
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
+
+    private lateinit var photoPicker: ActivityResultLauncher<PickVisualMediaRequest>
+    private lateinit var viewModel: MainViewModel
     var fragmentProfileBinding: FragmentProfileBinding? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fragmentProfileBinding = FragmentProfileBinding.bind(view)
@@ -58,35 +58,26 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 replace<LoginFragment>(R.id.host_container)
             }
         }
+        val rep = Repository(requireContext())
+        viewModel = MainViewModel(rep)
+        photoPicker = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) {
+            it?.let {
+                val bitmap = getBitmap(requireContext().contentResolver, it)
+                if (bitmap != null) viewModel.addImage(bitmap)
+            }
+        }
 
-        val repository: Repository = Repository(requireContext())
-        val viewModel: MainViewModel = MainViewModel(repository)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.RecProf)
-
-        val arrayAdapter = ImageViewAdapter()
+        val ProfilePicturesAdapter = ProfilePicturesAdapter(
+            click = { uri -> openPhoto(uri) },
+            addClick = { openPhotoPicker() }
+        )
         viewModel.getImages()
-        recyclerView.adapter = arrayAdapter
+        fragmentProfileBinding!!.RecProf.adapter = ProfilePicturesAdapter
         lifecycleScope.launch {
-            viewModel.uris.collect{
-                arrayAdapter.submitList(it)
+            viewModel.uris.collect {
+                ProfilePicturesAdapter.submitList(it)
             }
         }
-        val photoPicker = registerForActivityResult(ActivityResultContracts.PickVisualMedia()){
-            val bitmap = getBitmap(requireContext().contentResolver, it!!)
-            if (bitmap != null) {
-                viewModel.addImage(bitmap)
-            }
-        }
-//        var button = Button(requireContext());
-//        button.layoutParams = LinearLayout.LayoutParams(
-//            LinearLayout.LayoutParams(153, 115)
-//        )
-//        button.text = "Dynamic Button"
-//        button.setBackgroundColor(Color.GREEN)
-//        recyclerView.addView(button)
-//        button.setOnClickListener {
-//            photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-//        }
 
         fragmentProfileBinding?.ProfNavig?.setOnItemReselectedListener()
         {
@@ -109,5 +100,19 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
 
         }
+    }
+    private fun openPhoto(uri: Uri) {
+        val PFragment = PhotoFragment()
+
+        val bundle = Bundle()
+        bundle.putString("uri", uri.toString())
+        PFragment.setArguments(bundle)
+        parentFragmentManager.commit {
+            replace(R.id.host_container, PFragment)
+        }
+    }
+
+    private fun openPhotoPicker() {
+        photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
 }

@@ -25,5 +25,9 @@ class MainViewModel(val repository: Repository): ViewModel() {
             getImages()
         }
     }
+    fun removeImage(uri: Uri) {
+        getImages()
+        _uris.value -= uri
+    }
 
 }

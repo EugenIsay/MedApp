@@ -62,5 +62,20 @@
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_photoFragment"
+            app:destination="@id/photoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photoFragment"
+        android:name="com.example.medapp.ui.PhotoFragment"
+        android:label="PhotoFragment"
+        tools:layout="@layout/fragment_photo">
+        <action
+            android:id="@+id/action_photoFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <argument
+            android:name="image_uri"
+            app:argType="android.net.Uri"/>
     </fragment>
 </navigation>

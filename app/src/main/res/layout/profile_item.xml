@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/image_elem"
+    android:layout_margin="10dp"
     android:layout_width="153dp"
-    android:id="@+id/profile_item_back"
-    android:layout_marginHorizontal="15dp"
-    android:layout_marginBottom="20dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:roundPercent="0.2"
-
+    android:layout_height="115dp"
     android:background="@drawable/ic_prf"
-    android:layout_height="115dp">
-
-    <TextView
-        android:fontFamily="@font/alegreya_sans"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12:00"
-        android:textColor="@color/white"
-        android:layout_marginTop="70dp"
-        android:layout_marginStart="15dp"
-        />
-
-</com.google.android.material.card.MaterialCardView>
+    android:layout_marginBottom="18dp"
+    android:clipToOutline="true"/>
